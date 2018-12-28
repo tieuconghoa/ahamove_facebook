@@ -35,8 +35,6 @@ app.get('/post', function(req, res){
       if(Inforp.status != 'ok'){
         res.render('post', {Inforp: null, error :"Error" });
       } else {
-        console.log(group_id);
-        console.log(url);
         res.render('post', {Infor: Inforp, error :"Error" });
       }
     }

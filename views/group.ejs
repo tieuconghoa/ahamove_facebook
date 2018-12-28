@@ -29,15 +29,16 @@
       </tr>
       <% if (Infor){ %>
         <% for(var i=0; i<Infor.groups.length; i++){ %>
+          <% var lnk = `https://www.facebook.com/${Infor.groups[i].group_id}` %>
           <tr>
             <td><%= i+1 %></td>
-            <td><%= Infor.groups[i].group_id %></td>
-            <td><a href ><%= Infor.groups[i].group_name %></a></td>
             <td>
               <form action="/post" method="get">
                 <input name="group_id" required type="submit" class="ghost-button" value=<%= Infor.groups[i].group_id %> >
               </form>
-            <%= Infor.groups[i].num_posts %></td> 
+            </td>
+            <td><a href= <%= lnk %>><%= Infor.groups[i].group_name %></a></td>
+            <td><%= Infor.groups[i].num_posts %></td> 
           </tr>
         <%} %>
       <%} %>
