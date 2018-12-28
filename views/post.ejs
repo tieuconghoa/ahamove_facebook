@@ -14,22 +14,20 @@
     <table style="width:100%">
       <tr>
         <th>Stt</th>
-        <th>Thời gian</th>
+        <th>Group ID</th>
         <th>User name</th>
         <th>Nội dung</th>
       </tr>
-      <tr>
-        <td>Stt</td>
-        <td>Thời gian</td>
-        <td>User name</td>
-        <td>Nội dung</td>
-      </tr>
-      <tr>
-        <td>Stt</td>
-        <td>Thời gian</td>
-        <td>User name</td>
-        <td>Nội dung</td>
-      </tr>
+      <% if (Infor){ %>
+        <% for(var i=0; i<Infor.posts.length; i++){ %>
+          <tr>
+            <td><% i+1 %></td>
+            <td><%= Infor.posts[i].groupId %></td>
+            <td><a href="#"><%= Infor.posts[i].fbUser %></a></td>
+            <td><a href="/post"><%= Infor.posts[i].message %></a></td>
+          </tr>
+        <%} %>
+      <%} %>
     </table>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

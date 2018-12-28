@@ -13,17 +13,19 @@
   <body>
     <table style="width:100%">
       <tr>
+        <th>ID</th>
         <th>Group</th>
         <th>Số bài</th>
       </tr>
-      <tr>
-        <td><a href="#">Tên group</a></td>
-        <td><a href="/post">Số bài</a></td>
-      </tr>
-      <tr>
-        <td><a href="#">Tên group</a></td>
-        <td><a href="/post">Số bài</a></td>
-      </tr>
+      <% if (Infor){ %>
+        <% for(var i=0; i<Infor.groups.length; i++){ %>
+          <tr>
+            <td><%= Infor.groups[i].group_id %></td>
+            <td><a href ><%= Infor.groups[i].group_name %></a></td>
+            <td><a href="post/" ><%= Infor.groups[i].num_posts %></a></td>
+          </tr>
+        <%} %>
+      <%} %>
     </table>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
