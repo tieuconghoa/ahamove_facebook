@@ -7,6 +7,15 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        th {
+          background-color: black;
+          color: white;
+        }
+        table, th, td {
+          border: 1px solid black;
+        }
+      </style>
 
     <title>Post</title>
   </head>
@@ -21,10 +30,16 @@
       <% if (Infor){ %>
         <% for(var i=0; i<Infor.posts.length; i++){ %>
           <tr>
-            <td><% i+1 %></td>
+            <td><%= i+1 %></td>
             <td><%= Infor.posts[i].groupId %></td>
-            <td><a href="#"><%= Infor.posts[i].fbUser %></a></td>
-            <td><a href="/post"><%= Infor.posts[i].message %></a></td>
+            <td>                
+              <form action="/user" method="get">
+                <input name="userId" required type="submit" class="ghost-button" value=<%= Infor.posts[i].fbUser %> >
+              </form>
+            </td>
+            <td>
+              <%= Infor.posts[i].message %>
+            </td>     
           </tr>
         <%} %>
       <%} %>

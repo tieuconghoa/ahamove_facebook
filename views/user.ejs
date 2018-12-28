@@ -7,23 +7,34 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        th {
+          background-color: black;
+          color: white;
+        }
+        table, th, td {
+          border: 1px solid black;
+        }
+      </style>
 
     <title>User</title>
   </head>
   <body>
     <table style="width:100%">
       <tr>
+        <th>STT</th>
         <th>Group</th>
-        <th>Số bài viết</th>
+        <th>Nội dung</th>
       </tr>
-      <tr>
-        <td>Tên Group</td>
-        <td>Số bài viết</td>
-      </tr>
-      <tr>
-        <td>Tên Group</td>
-        <td>Số bài viết</td>
-      </tr>
+      <% if (Infor){ %>
+        <% for(var i=0; i<Infor.posts.length; i++){ %>
+          <tr>
+            <td><%= i+1 %></td>
+            <td><%= Infor.posts[i].groupId %></td>
+            <td><%= Infor.posts[i].message %></td>
+          </tr>
+        <%} %>
+      <%} %>
     </table>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

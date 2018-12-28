@@ -12,11 +12,11 @@ app.get('/', function (req, res) {
   var url = `http://ahamove.cuongvc.com:8081/api/groups/get`
   request(url, function (err, response, body) {
     if(err){
-      res.render('group', {Infor: null, error :"Error" });
+      res.render('group', {Inforg: null, error :"Error" });
     } else {
       const Inforg = JSON.parse(body)
       if(Inforg.status != 'ok'){
-        res.render('group', {Infor: null, error :"Error" });
+        res.render('group', {Inforg: null, error :"Error" });
       } else {
         res.render('group', {Infor: Inforg, error :"Error" });
       }
@@ -24,19 +24,39 @@ app.get('/', function (req, res) {
   });
 })
 
-app.get('/post/:group_id', function(req, res){
-  var group_id = req.params['group_id'];
+app.get('/post', function(req, res){
+  let group_id = req.query.group_id;
   var url = `http://ahamove.cuongvc.com:8081/api/posts/get_by_group?group_id=${group_id}`
   request(url, function (err, response, body) {
     if(err){
-      res.render('post', {Infor: null, error :"Error" });
+      res.render('post', {Inforp: null, error :"Error" });
     } else {
       const Inforp = JSON.parse(body)
       if(Inforp.status != 'ok'){
-        res.render('post', {Infor: null, error :"Error" });
+        res.render('post', {Inforp: null, error :"Error" });
       } else {
         console.log(group_id);
-        res.render('post/:group_id', {Infor: Inforp, error :"Error" });
+        console.log(url);
+        res.render('post', {Infor: Inforp, error :"Error" });
+      }
+    }
+  });
+})
+
+app.get('/user', function(req, res){
+  let userId = req.query.userId;
+  var url = `http://ahamove.cuongvc.com:8081/api/posts/get_by_user?fbUser=${userId}`
+  request(url, function (err, response, body) {
+    if(err){
+      res.render('user', {Infor: null, error :"Error" });
+    } else {
+      const Inforu = JSON.parse(body)
+      if(Inforu.status != 'ok'){
+        res.render('user', {Inforu: null, error :"Error" });
+      } else {
+        console.log(userId);
+        console.log(url);
+        res.render('user', {Infor: Inforu, error :"Error" });
       }
     }
   });
