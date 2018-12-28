@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/post', function(req, res){
-  let group_id = req.query.group_id;
+  var group_id = req.query.group_id;
   var url = `http://ahamove.cuongvc.com:8081/api/posts/get_by_group?group_id=${group_id}`
   request(url, function (err, response, body) {
     if(err){
@@ -44,7 +44,7 @@ app.get('/post', function(req, res){
 })
 
 app.get('/user', function(req, res){
-  let userId = req.query.userId;
+  var userId = req.query.userId;
   var url = `http://ahamove.cuongvc.com:8081/api/posts/get_by_user?fbUser=${userId}`
   request(url, function (err, response, body) {
     if(err){
