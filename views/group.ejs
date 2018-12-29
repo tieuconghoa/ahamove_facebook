@@ -7,38 +7,22 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <style>
-      th {
-        background-color: black;
-        color: white;
-      }
-      table, th, td {
-        border: 1px solid black;
-      }
-    </style>
 
     <title>Group</title>
   </head>
   <body>
     <table style="width:100%">
       <tr>
-        <th>STT</th>
         <th>ID</th>
         <th>Group</th>
         <th>Số bài</th>
       </tr>
       <% if (Infor){ %>
         <% for(var i=0; i<Infor.groups.length; i++){ %>
-          <% var lnk = `https://www.facebook.com/${Infor.groups[i].group_id}` %>
           <tr>
-            <td><%= i+1 %></td>
-            <td>
-              <form action="/post" method="get">
-                <input name="group_id" required type="submit" class="ghost-button" value=<%= Infor.groups[i].group_id %> >
-              </form>
-            </td>
-            <td><a href= <%= lnk %>><%= Infor.groups[i].group_name %></a></td>
-            <td><%= Infor.groups[i].num_posts %></td> 
+            <td><a href="/<%= Infor.groups[i].group_id %>" target="_blank"><%= Infor.groups[i].group_id %></a></td>
+            <td><a href="https:facebook.com/<%= Infor.groups[i].group_id %>" target="_blank"><%= Infor.groups[i].group_name %></a></td>
+            <td><a href><%= Infor.groups[i].num_posts %></a></td>
           </tr>
         <%} %>
       <%} %>

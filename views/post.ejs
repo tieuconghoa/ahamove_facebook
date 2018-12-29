@@ -7,43 +7,49 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <style>
-        th {
-          background-color: black;
-          color: white;
-        }
-        table, th, td {
-          border: 1px solid black;
-        }
-      </style>
 
     <title>Post</title>
+    <script>
+      
+    </script>
   </head>
+
   <body>
-    <table style="width:100%">
+    <div class="container-fluid">
+      <h1 class="text-center">Các post trong group</h1>
+    <table style="width:100%" class="table table-hover table-bordered">
       <tr>
         <th>Stt</th>
-        <th>Group ID</th>
-        <th>User Id</th>
+        <th>Time</th>
+        <th>User name</th>
         <th>Nội dung</th>
+        <th>Id bài viết</th>
       </tr>
+      <% function timeConverter(UNIX_timestamp){
+        var a = new Date(UNIX_timestamp);
+        var year = a.getFullYear();
+        var month = a.getMonth();
+        var date = a.getDate();
+        var hour = a.getHours() < 10 ? '0' + a.getHours() : a.getHours();
+        var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
+        var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+        var time = date + '-' + month + '-' + year + ' ' + hour + ':' + min + ':' + sec ;
+        return time;
+      }
+      %>
       <% if (Infor){ %>
         <% for(var i=0; i<Infor.posts.length; i++){ %>
           <tr>
-            <td><%= i+1 %></td>
-            <td><%= Infor.posts[i].groupId %></td>
-            <td>                
-              <form action="/user" method="get">
-                <input name="userId" required type="submit" class="ghost-button" value=<%= Infor.posts[i].fbUser %> >
-              </form>
-            </td>
-            <td>
-              <%= Infor.posts[i].message %>
-            </td>     
+            <td><%= i %></td>
+            <td><%= timeConverter(Infor.posts[i].createTime) %></td>
+            <td><a href="https://facebook.com/<%= Infor.posts[i].fbUser %>" target="_blank"><%= Infor.posts[i].fbUser %></a></td>
+            <td><%= Infor.posts[i].message %></a></td>
+            <td><a href="https://facebook.com/<%= Infor.posts[i].postId %>" target="_blank"><%= Infor.posts[i].postId %></a></td>
           </tr>
         <%} %>
       <%} %>
     </table>
+  </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
