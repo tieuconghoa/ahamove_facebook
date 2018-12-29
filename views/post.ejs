@@ -28,8 +28,9 @@
       <% function timeConverter(UNIX_timestamp){
         var a = new Date(UNIX_timestamp);
         var year = a.getFullYear();
-        var month = a.getMonth();
-        var date = a.getDate();
+        var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+        var month = months[a.getMonth()] < 10 ? '0' + months[a.getMonth()] : months[a.getMonth()];
+        var date = a.getDate() < 10 ? '0' + a.getDate() : a.getDate();
         var hour = a.getHours() < 10 ? '0' + a.getHours() : a.getHours();
         var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
         var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
